@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Prediction Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>COVID-19 Symptom Checker</h1>
+        <p>Enter your symptoms to get a prediction about COVID-19 test results</p>
+        
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <select id="sex" name="sex" required>
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+            </div>
+            
+            <h3>Symptoms:</h3>
+            <div class="symptoms-grid">
+                <div class="form-group">
+                    <label for="chest_pain">Chest Pain:</label>
+                    <select id="chest_pain" name="chest_pain">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cough">Cough:</label>
+                    <select id="cough" name="cough">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="diarrhea">Diarrhea:</label>
+                    <select id="diarrhea" name="diarrhea">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fatigue">Fatigue or Weakness:</label>
+                    <select id="fatigue" name="fatigue">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fever">Fever:</label>
+                    <select id="fever" name="fever">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="headache">Headache:</label>
+                    <select id="headache" name="headache">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sore_throat">Sore Throat:</label>
+                    <select id="sore_throat" name="sore_throat">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nausea">Nausea:</label>
+                    <select id="nausea" name="nausea">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="runny_nose">Runny Nose:</label>
+                    <select id="runny_nose" name="runny_nose">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vomiting">Vomiting:</label>
+                    <select id="vomiting" name="vomiting">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loss_of_taste">Loss of Taste:</label>
+                    <select id="loss_of_taste" name="loss_of_taste">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loss_of_smell">Loss of Smell:</label>
+                    <select id="loss_of_smell" name="loss_of_smell">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn">Predict</button>
+        </form>
+        
+        {% if prediction_text %}
+        <div class="result {{ result_class }}">
+            <h2>{{ prediction_text }}</h2>
+            <p>{{ confidence_text }}</p>
+        </div>
+        {% endif %}
+        
+
+    </div>
+</body>
+</html>
